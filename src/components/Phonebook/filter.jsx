@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterChangeAction } from '../store/phonebookReducer';
+import { filterChangeAction } from '../../store/Contacts/phonebookReducer';
+import { selectFilters } from 'store/Contacts/selectors';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(selectFilters);
 
   const handleChange = e => {
     dispatch(filterChangeAction(e.target.value));

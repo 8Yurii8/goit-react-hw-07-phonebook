@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import css from './style.module.css';
 import ContactList from './ContactList';
-import ContactForm from './ContactForm';
+import ContactForm from './ContactForm/ContactForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from '../api/api';
+import { fetchContacts } from '../../store/Contacts/operations';
 import { Filter } from './filter';
+import { selectContacts, selectFilters } from 'store/Contacts/selectors';
+
 const Phonebook = () => {
   const dispatch = useDispatch();
 
@@ -12,8 +14,8 @@ const Phonebook = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilters);
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())

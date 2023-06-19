@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchContacts, addContact, deleteContact } from '../api/api';
+import { fetchContacts, addContact, deleteContact } from './operations';
 
 const phonebookSlice = createSlice({
   name: 'phonebook',
@@ -61,4 +61,4 @@ const phonebookSlice = createSlice({
 });
 
 export const { filterChangeAction } = phonebookSlice.actions;
-export default phonebookSlice.reducer;
+export const { reducer } = phonebookSlice;

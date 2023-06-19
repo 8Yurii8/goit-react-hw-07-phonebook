@@ -1,14 +1,15 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../api/api';
-import { validationSchema } from '../validate/validationSchema';
+import { addContact } from '../../../store/Contacts/operations';
+import { validationSchema } from './validationSchema';
 
-import css from './style.module.css';
+import css from '../style.module.css';
+import { selectContacts } from 'store/Contacts/selectors';
 
 function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(selectContacts);
 
   const onSubmit = ({ name, number }, actions) => {
     if (isContactExist(name)) {
